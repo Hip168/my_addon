@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_employee_form_view_extension" model="ir.ui.view">
+        <field name="name">hr.employee.form.extension.pantry</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="placeholder">Mã nhân viên pantry</attribute>
+            </xpath>
+            <xpath expr="//field[@name='job_id']" position="after">
+                <field name="pantry_employee_id" string="Mã nhân viên pantry" />
+            </xpath>
+        </field>
+    </record>
+    <record id="hr_employee_public_view_search" model="ir.ui.view">
+        <field name="name">hr.employee.search</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="pantry_employee_id" string="Mã nhân viên pantry" />
+            </xpath>
+            <xpath expr="//searchpanel/field[@name='department_id']" position="attributes">
+                <attribute name="string">Lớp</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_employee_form_remove_tabs" model="ir.ui.view">
+        <field name="name">hr.employee.form.remove.tabs</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="replace">
+                <notebook>
+                    <page string="Thông tin">
+                        <group>
+                            <field name="pantry_employee_id" />
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+    <record id="open_view_employee_list" model="ir.actions.act_window">
+        <field name="name">Sinh viên</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="hr.view_employee_filter" />
+    </record>
+
+    <menuitem id="menu_pantry_employee"
+        name="Sinh viên"
+        parent="menu_pantry_root"
+        action="open_view_employee_list"
+        sequence="40" />
+</odoo>

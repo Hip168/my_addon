@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pantry_item,pantry.item,model_pantry_item,base.group_user,1,1,1,1
+access_pantry_check,pantry.check,model_pantry_check,base.group_user,1,1,1,1
+access_pantry_check_line,pantry.check.line,model_pantry_check_line,base.group_user,1,1,1,1
+access_pantry_restock,pantry.restock,model_pantry_restock,base.group_user,1,1,1,1
+access_pantry_restock_line,pantry.restock.line,model_pantry_restock_line,base.group_user,1,1,1,1
+access_pantry_report,pantry.report,model_pantry_report,base.group_user,1,0,0,0

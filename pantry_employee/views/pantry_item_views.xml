@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Tree View -->
+        <record id="view_pantry_item_tree" model="ir.ui.view">
+            <field name="name">pantry.item.tree</field>
+            <field name="model">pantry.item</field>
+            <field name="arch" type="xml">
+                <list string="Sản phẩm">
+                    <field name="name" />
+                    <field name="import_price" />
+                    <field name="import_uom" />
+                    <field name="sale_price" />
+                    <field name="sale_uom" />
+                    <field name="quantity" />
+
+                </list>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_pantry_item_form" model="ir.ui.view">
+            <field name="name">pantry.item.form</field>
+            <field name="model">pantry.item</field>
+            <field name="arch" type="xml">
+                <form string="Sản phẩm">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" />
+                            <h1>
+                                <field name="name" placeholder="Ví dụ: Mì Hảo Hảo" />
+                            </h1>
+                        </div>
+                        <group>
+                            <group string="Giá &amp; Đơn vị">
+                                <field name="currency_id" invisible="1" />
+                                <field name="import_price" />
+                                <field name="import_uom" />
+                                <field name="sale_price" />
+                                <field name="sale_uom" />
+                                <field name="sale_qty" />
+                                <label for="conversion_rate" />
+                                <div class="o_row">
+                                    <field name="conversion_rate" />
+                                    <field name="conversion_info" readonly="1"
+                                        class="oe_inline text-muted"
+                                        style="font-style: italic; margin-left: 10px;" />
+                                </div>
+                            </group>
+                            <group string="Tồn kho">
+
+                                <field name="quantity" />
+                                <field name="initial_stock" class="oe_edit_only" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_pantry_item" model="ir.actions.act_window">
+            <field name="name">Sản phẩm</field>
+            <field name="res_model">pantry.item</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo sản phẩm đầu tiên của bạn!
+                </p>
+            </field>
+        </record>
+
+        <!-- Menus -->
+        <menuitem id="menu_pantry_root" name="Pantry" sequence="10" />
+        <menuitem id="menu_pantry_item" name="Sản phẩm" parent="menu_pantry_root"
+            action="action_pantry_item" sequence="10" />
+    </data>
+</odoo>

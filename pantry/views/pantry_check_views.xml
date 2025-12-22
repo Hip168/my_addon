@@ -1,0 +1,96 @@
+<odoo>
+    <data>
+        <!-- Tree View -->
+        <record id="view_pantry_check_tree" model="ir.ui.view">
+            <field name="name">pantry.check.tree</field>
+            <field name="model">pantry.check</field>
+            <field name="arch" type="xml">
+                <list string="Phiếu kiểm kho">
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="total_profit" />
+                    <field name="state" widget="badge" decoration-success="state == 'done'"
+                        decoration-info="state == 'draft'" />
+                </list>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_pantry_check_form" model="ir.ui.view">
+            <field name="name">pantry.check.form</field>
+            <field name="model">pantry.check</field>
+            <field name="arch" type="xml">
+                <form string="Phiếu kiểm kho">
+                    <header>
+                        <button name="action_load_items" string="Bắt đầu kiểm (Tải sản phẩm)"
+                            type="object" class="oe_highlight" invisible="state != 'draft'" />
+                        <button name="action_confirm" string="Xác nhận &amp; Cập nhật kho"
+                            type="object" class="btn-primary" invisible="state != 'draft'"
+                            confirm="Bạn có chắc chắn muốn cập nhật tồn kho?" />
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="date" readonly="state == 'done'" />
+                            <field name="currency_id" invisible="1" />
+                        </group>
+                        <notebook>
+                            <page string="Chi tiết kiểm kê">
+                                <field name="line_ids" readonly="state == 'done'">
+                                    <list editable="bottom">
+                                        <field name="item_id" />
+                                        <field name="system_qty" />
+                                        <field name="actual_qty" />
+                                        <field name="discard_qty" />
+                                        <field name="sold_qty" />
+                                        <field name="profit" sum="Tổng lãi" />
+                                        <field name="currency_id" invisible="1" />
+                                    </list>
+                                </field>
+                                <group class="oe_subtotal_footer oe_right">
+                                    <field name="total_profit" class="oe_subtotal_footer_separator" />
+                                </group>
+                            </page>
+
+                            <page string="Báo cáo" invisible="state != 'done'">
+                                <group>
+                                    <group>
+                                        <field name="total_revenue" />
+                                        <field name="total_cost" />
+                                    </group>
+                                    <group>
+                                        <field name="total_discard_cost" />
+                                        <field name="total_profit"
+                                            decoration-success="total_profit &gt; 0"
+                                            decoration-danger="total_profit &lt; 0" />
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_pantry_check" model="ir.actions.act_window">
+            <field name="name">Kiểm kho</field>
+            <field name="res_model">pantry.check</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo phiếu kiểm kho đầu tiên!
+                </p>
+            </field>
+        </record>
+
+        <!-- Menus -->
+        <menuitem id="menu_pantry_check" name="Kiểm kho" parent="menu_pantry_root"
+            action="action_pantry_check" sequence="20" />
+    </data>
+</odoo>

@@ -1,0 +1,257 @@
+<odoo>
+  <data>
+
+    <record id="view_animal_species_tree" model="ir.ui.view">
+      <field name="name">animal.species.tree</field>
+      <field name="model">animal.species</field>
+      <field name="arch" type="xml">
+        <list string="Danh mục Loài vật">
+          <field name="name" />
+          <field name="classification" />
+          <field name="description" />
+        </list>
+      </field>
+    </record>
+
+    <record id="view_animal_species_form" model="ir.ui.view">
+      <field name="name">animal.species.form</field>
+      <field name="model">animal.species</field>
+      <field name="arch" type="xml">
+        <form string="Thông tin Loài">
+          <sheet>
+            <group>
+              <field name="name" />
+              <field name="classification" />
+              <field name="description" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_animal_species" model="ir.actions.act_window">
+      <field name="name">Danh mục Loài vật</field>
+      <field name="res_model">animal.species</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+
+    <record id="view_cage_tree" model="ir.ui.view">
+      <field name="name">cage.tree</field>
+      <field name="model">cage</field>
+      <field name="arch" type="xml">
+        <list string="Danh sách Chuồng nuôi">
+          <field name="name" />
+          <field name="species_id" />
+        </list>
+      </field>
+    </record>
+
+    <record id="view_cage_form" model="ir.ui.view">
+      <field name="name">cage.form</field>
+      <field name="model">cage</field>
+      <field name="arch" type="xml">
+        <form string="Thông tin Chuồng nuôi">
+          <sheet>
+            <group>
+              <group string="Thông tin chung">
+                <field name="name" />
+                <field name="species_id" />
+              </group>
+            </group>
+            <notebook>
+              <page string="Danh sách vật nuôi">
+                <field name="animal_ids">
+                  <list>
+                    <field name="name" />
+                    <field name="age" />
+                    <field name="health_status" />
+                  </list>
+                </field>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_cage" model="ir.actions.act_window">
+      <field name="name">Quản lý Chuồng nuôi</field>
+      <field name="res_model">cage</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+
+    <record id="view_animal_base_tree" model="ir.ui.view">
+      <field name="name">animal.base.tree</field>
+      <field name="model">animal.base</field>
+      <field name="arch" type="xml">
+        <list string="Danh sách Động vật">
+          <field name="name" />
+          <field name="species_id" />
+          <field name="cage_id" />
+          <field name="birthday" />
+          <field name="age" />
+          <field name="health_status" />
+        </list>
+      </field>
+    </record>
+
+    <record id="view_animal_base_form" model="ir.ui.view">
+      <field name="name">animal.base.form</field>
+      <field name="model">animal.base</field>
+      <field name="arch" type="xml">
+        <form string="Thông tin Động vật">
+          <sheet>
+            <group>
+              <group string="Thông tin chung">
+                <field name="name" />
+                <field name="species_id" />
+                <field name="cage_id" />
+                <field name="birthday" />
+                <field name="age" />
+                <field name="age" />
+              </group>
+              <group string="Sức khỏe (Extension)">
+                <field name="health_status" />
+                <field name="last_checkup_date" />
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_animal_base" model="ir.actions.act_window">
+      <field name="name">Hồ sơ Động vật</field>
+      <field name="res_model">animal.base</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+
+    <record id="view_animal_toy_tree" model="ir.ui.view"> 
+      <field name="name">animal.toy.tree</field>
+      <field name="model">animal.toy</field>
+      <field name="arch" type="xml">
+        <list string="Gấu bông hình thú">
+          <field name="name" />
+          <field name="species_id" />
+          <field name="price" />
+          <field name="material" />
+        </list>
+      </field>
+    </record>
+
+    <record id="view_animal_toy_form" model="ir.ui.view">
+      <field name="name">animal.toy.form</field>
+      <field name="model">animal.toy</field>
+      <field name="arch" type="xml">
+        <form string="Gấu bông hình thú">
+          <sheet>
+            <group>
+              <group string="Thông tin chung">
+                <field name="name" />
+                <field name="species_id" />
+              </group>
+              <group string="Chi tiết sản phẩm">
+                <field name="price" />
+                <field name="material" />
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_animal_toy" model="ir.actions.act_window">
+      <field name="name">Gấu bông</field>
+      <field name="res_model">animal.toy</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+
+    <record id="view_race_horse_tree" model="ir.ui.view">
+      <field name="name">race.horse.tree</field>
+      <field name="model">race.horse</field>
+      <field name="arch" type="xml">
+        <list string="Ngựa đua">
+          <field name="name" optional="hide" />
+          <field name="species_id" />
+          <field name="cage_id" />
+          <field name="age" />
+          <field name="top_speed" />
+          <field name="trophies_count" />
+          <field name="health_status" />
+        </list>
+      </field>
+    </record>
+
+    <record id="view_race_horse_form" model="ir.ui.view">
+      <field name="name">race.horse.form</field>
+      <field name="model">race.horse</field>
+      <field name="arch" type="xml">
+        <form string="Ngựa đua">
+          <sheet>
+            <group>
+              <group string="Thông tin cơ bản">
+                <field name="name" />
+                <field name="species_id" readonly="1" />
+                <field name="cage_id" />
+                <field name="birthday" />
+                <field name="age" />
+              </group>
+              <group string="Thành tích">
+                <field name="top_speed" />
+                <field name="trophies_count" />
+              </group>
+              <group string="Sức khỏe (Delegate)">
+                <field name="health_status" />
+                <field name="last_checkup_date" />
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="action_race_horse" model="ir.actions.act_window">
+      <field name="name">Ngựa đua</field>
+      <field name="res_model">race.horse</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+
+    <menuitem id="menu_inherit_root" name="Sở thú" sequence="10" />
+
+    <menuitem id="menu_animal_species"
+      name="Loài vật"
+      parent="menu_inherit_root"
+      action="action_animal_species"
+      sequence="100" />
+
+    <menuitem id="menu_cage"
+      name="Chuồng nuôi"
+      parent="menu_inherit_root"
+      action="action_cage"
+      sequence="1" />
+
+    <menuitem id="menu_animal_base"
+      name="Hồ sơ gốc"
+      parent="menu_inherit_root"
+      action="action_animal_base"
+      sequence="2" />
+
+    <menuitem id="menu_animal_toy"
+      name="Gấu bông"
+      parent="menu_inherit_root"
+      action="action_animal_toy"
+      sequence="3" />
+
+    <menuitem id="menu_race_horse"
+      name="Ngựa đua"
+      parent="menu_inherit_root"
+      action="action_race_horse"
+      sequence="4" />
+
+  </data>
+</odoo>

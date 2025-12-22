@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_/users/leminhdao168/documents/career/odoo/odoo_local_19/my-addon/msv_/users/leminhdao168/documents/career/odoo/odoo_local_19/my-addon/msv,/users/leminhdao168/documents/career/odoo/odoo_local_19/my-addon/msv./users/leminhdao168/documents/career/odoo/odoo_local_19/my-addon/msv,model_/users/leminhdao168/documents/career/odoo/odoo_local_19/my-addon/msv_/users/leminhdao168/documents/career/odoo/odoo_local_19/my-addon/msv,base.group_user,1,1,1,1

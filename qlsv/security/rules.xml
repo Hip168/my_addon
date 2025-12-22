@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="rule_qlsv_lop_giangvien" model="ir.rule">
+            <field name="name">Lop Giang Vien</field>
+            <field name="model_id" ref="model_qlsv_lop" />
+            <field name="domain_force">[('giang_vien_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('qlsv.group_qlsv_giangvien'))]" />
+            <field name="perm_read" eval="True" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_create" eval="True" />
+            <field name="perm_unlink" eval="True" />
+        </record>
+
+        <record id="rule_qlsv_lop_sinhvien" model="ir.rule">
+            <field name="name">Lop Sinh Vien</field>
+            <field name="model_id" ref="model_qlsv_lop" />
+            <field name="domain_force">[('sinh_vien_ids', 'in', user.id)]</field>
+            <field name="groups" eval="[(4, ref('qlsv.group_qlsv_sinhvien'))]" />
+            <field name="perm_read" eval="True" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_unlink" eval="False" />
+        </record>
+    </data>
+</odoo>

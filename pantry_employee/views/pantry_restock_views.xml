@@ -1,0 +1,78 @@
+<odoo>
+    <data>
+        <!-- Tree View -->
+        <record id="view_pantry_restock_tree" model="ir.ui.view">
+            <field name="name">pantry.restock.tree</field>
+            <field name="model">pantry.restock</field>
+            <field name="arch" type="xml">
+                <list string="Phiếu nhập hàng">
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="total_amount" />
+                    <field name="state" widget="badge" decoration-success="state == 'done'"
+                        decoration-info="state == 'draft'" />
+                </list>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_pantry_restock_form" model="ir.ui.view">
+            <field name="name">pantry.restock.form</field>
+            <field name="model">pantry.restock</field>
+            <field name="arch" type="xml">
+                <form string="Phiếu nhập hàng">
+                    <header>
+                        <button name="action_confirm" string="Xác nhận &amp; Nhập kho" type="object"
+                            class="oe_highlight" invisible="state != 'draft'"
+                            confirm="Bạn có chắc chắn muốn nhập kho?" />
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                        </div>
+                        <group>
+                            <field name="date" readonly="state == 'done'" />
+                            <field name="currency_id" invisible="1" />
+                        </group>
+                        <notebook>
+                            <page string="Chi tiết nhập hàng">
+                                <field name="line_ids" readonly="state == 'done'">
+                                    <list editable="bottom">
+                                        <field name="item_id" />
+                                        <field name="quantity" />
+                                        <field name="import_uom" />
+                                        <field name="price_unit" />
+                                        <field name="subtotal" sum="Tổng tiền" />
+                                        <field name="currency_id" invisible="1" />
+                                    </list>
+                                </field>
+                                <group class="oe_subtotal_footer oe_right">
+                                    <field name="total_amount" class="oe_subtotal_footer_separator" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_pantry_restock" model="ir.actions.act_window">
+            <field name="name">Nhập hàng</field>
+            <field name="res_model">pantry.restock</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo phiếu nhập hàng đầu tiên!
+                </p>
+            </field>
+        </record>
+
+        <!-- Menus -->
+        <menuitem id="menu_pantry_restock" name="Nhập hàng" parent="menu_pantry_root"
+            action="action_pantry_restock" sequence="15" />
+    </data>
+</odoo>
