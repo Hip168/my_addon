@@ -110,7 +110,7 @@
                 <field name="cage_id" />
                 <field name="birthday" />
                 <field name="age" />
-                <field name="age" />
+
               </group>
               <group string="Sức khỏe (Extension)">
                 <field name="health_status" />

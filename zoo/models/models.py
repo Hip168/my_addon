@@ -44,8 +44,6 @@ class AnimalBase(models.Model):
     birthday = fields.Date(string="Ngày sinh")
     age = fields.Integer(string="Tuổi đời", compute="_compute_age", store=True)
 
-    age = fields.Integer(string="Tuổi đời", compute="_compute_age", store=True)
-
     @api.depends("birthday")
     def _compute_age(self):
         for record in self:
