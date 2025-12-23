@@ -110,7 +110,7 @@
                 <field name="cage_id" />
                 <field name="birthday" />
                 <field name="age" />
-
+                <field name="age" />
               </group>
               <group string="Sức khỏe (Extension)">
                 <field name="health_status" />
@@ -122,65 +122,10 @@
       </field>
     </record>
 
-    <record id="view_animal_base_kanban" model="ir.ui.view">
-      <field name="name">animal.base.kanban</field>
-      <field name="model">animal.base</field>
-      <field name="arch" type="xml">
-        <kanban default_group_by="species_id" records_draggable="false">
-          <field name="name"/>
-          <field name="species_id"/>
-          <field name="health_status"/>
-          <templates>
-            <t t-name="card">
-              <div class="oe_kanban_global_click">
-                <div class="o_kanban_record_top">
-                  <strong class="o_kanban_record_title">
-                    <field name="name"/>
-                  </strong>
-                </div>
-                <div class="o_kanban_record_body">
-                  <div>Loài: <field name="species_id"/></div>
-                  <div>Tuổi: <field name="age"/></div>
-                  <div>
-                    <span t-attf-class="badge #{record.health_status.raw_value == 'good' ? 'text-bg-success' : (record.health_status.raw_value == 'sick' ? 'text-bg-danger' : 'text-bg-warning')}">
-                      <field name="health_status"/>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </t>
-          </templates>
-        </kanban>
-      </field>
-    </record>
-
-    <record id="view_animal_base_pivot" model="ir.ui.view">
-      <field name="name">animal.base.pivot</field>
-      <field name="model">animal.base</field>
-      <field name="arch" type="xml">
-        <pivot string="Thống kê Động vật">
-          <field name="species_id" type="row"/>
-          <field name="cage_id" type="col"/>
-          <field name="age" type="measure"/>
-        </pivot>
-      </field>
-    </record>
-
-    <record id="view_animal_base_graph" model="ir.ui.view">
-      <field name="name">animal.base.graph</field>
-      <field name="model">animal.base</field>
-      <field name="arch" type="xml">
-        <graph string="Thống kê Động vật" type="bar">
-          <field name="species_id"/>
-          <field name="age" type="measure"/>
-        </graph>
-      </field>
-    </record>
-
     <record id="action_animal_base" model="ir.actions.act_window">
       <field name="name">Hồ sơ Động vật</field>
       <field name="res_model">animal.base</field>
-      <field name="view_mode">list,form,kanban,pivot,graph</field>
+      <field name="view_mode">list,form</field>
     </record>
 
 

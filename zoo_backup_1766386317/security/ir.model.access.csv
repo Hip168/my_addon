@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_animal_species_sales,animal.species.sales,model_animal_species,group_zoo_sales,1,0,0,0
+access_animal_toy_sales,animal.toy.sales,model_animal_toy,group_zoo_sales,1,1,1,1
+access_animal_base_staff,animal.base.staff,model_animal_base,group_zoo_staff,1,1,1,0
+access_animal_species_staff,animal.species.staff,model_animal_species,group_zoo_staff,1,1,1,0
+access_cage_staff,cage.staff,model_cage,group_zoo_staff,1,1,1,0
+access_race_horse_staff,race.horse.staff,model_race_horse,group_zoo_staff,1,1,1,0
+access_animal_base_manager,animal.base.manager,model_animal_base,group_zoo_manager,1,1,1,1
+access_animal_species_manager,animal.species.manager,model_animal_species,group_zoo_manager,1,1,1,1
+access_cage_manager,cage.manager,model_cage,group_zoo_manager,1,1,1,1
+access_race_horse_manager,race.horse.manager,model_race_horse,group_zoo_manager,1,1,1,1

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="zoo.ZooDashboard">
+        <div class="o_zoo_dashboard h-100 overflow-auto">
+            <div class="container-fluid mt-4">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h1 class="display-5 text-primary">📊 Tổng quan Sở Thú</h1>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Species Card -->
+                    <div class="col-md-3 col-sm-6" t-on-click="() => this.openView('animal.species', 'Danh mục Loài')">
+                        <div class="card shadow-sm border-0 h-100 zoo-card zoo-card-species cursor-pointer">
+                            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                                <h2 class="display-4 fw-bold text-success">
+                                    <t t-esc="state.stats.species.count"/>
+                                </h2>
+                                <span class="text-muted fs-5 mb-2">Loài vật</span>
+                                <div class="text-center text-truncate w-100" style="font-size: 0.9rem;">
+                                    <t t-foreach="state.stats.species.list" t-as="item" t-key="item.id">
+                                        <div class="text-success"><t t-esc="item.name"/></div>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cages Card -->
+                    <div class="col-md-3 col-sm-6" t-on-click="() => this.openView('cage', 'Danh sách Chuồng')">
+                        <div class="card shadow-sm border-0 h-100 zoo-card zoo-card-cages cursor-pointer">
+                            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                                <h2 class="display-4 fw-bold text-info">
+                                    <t t-esc="state.stats.cages.count"/>
+                                </h2>
+                                <span class="text-muted fs-5 mb-2">Chuồng nuôi</span>
+                                <div class="text-center text-truncate w-100" style="font-size: 0.9rem;">
+                                    <t t-foreach="state.stats.cages.list" t-as="item" t-key="item.id">
+                                        <div class="text-info"><t t-esc="item.name"/></div>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Animals Card -->
+                    <div class="col-md-3 col-sm-6" t-on-click="() => this.openView('animal.base', 'Hồ sơ Động vật')">
+                        <div class="card shadow-sm border-0 h-100 zoo-card zoo-card-animals cursor-pointer">
+                            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                                <h2 class="display-4 fw-bold text-warning">
+                                    <t t-esc="state.stats.animals.count"/>
+                                </h2>
+                                <span class="text-muted fs-5 mb-2">Cá thể Động vật</span>
+                                <div class="text-center text-truncate w-100" style="font-size: 0.9rem;">
+                                    <t t-foreach="state.stats.animals.list" t-as="item" t-key="item.id">
+                                        <div class="text-warning"><t t-esc="item.name"/></div>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Toys Card -->
+                    <div class="col-md-3 col-sm-6" t-on-click="() => this.openView('animal.toy', 'Gấu bông')">
+                        <div class="card shadow-sm border-0 h-100 zoo-card zoo-card-toys cursor-pointer">
+                            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                                <h2 class="display-4 fw-bold text-danger">
+                                    <t t-esc="state.stats.toys.count"/>
+                                </h2>
+                                <span class="text-muted fs-5 mb-2">Gấu bông</span>
+                                <div class="text-center text-truncate w-100" style="font-size: 0.9rem;">
+                                    <t t-foreach="state.stats.toys.list" t-as="item" t-key="item.id">
+                                        <div class="text-danger"><t t-esc="item.name"/></div>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>
