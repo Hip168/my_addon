@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_football_player" model="ir.actions.report">
+            <field name="name">Hồ sơ Cầu thủ (Demo Kế thừa QWeb)</field>
+            <field name="model">football.player</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">quan_ly_doi_bong.report_player_profile</field>
+            <field name="report_file">quan_ly_doi_bong.report_player_profile</field>
+            <field name="binding_model_id" ref="model_football_player"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <template id="report_player_profile">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+                        <div class="page">
+                            <div class="alert alert-success" style="margin: 20px;">
+                                <h2>Hồ sơ: <span t-field="o.name"/></h2>
+                                <p>Lương: <span t-field="o.salary"/></p>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <template id="report_player_profile_inherit" inherit_id="quan_ly_doi_bong.report_player_profile">
+            <xpath expr="//p" position="after">
+                <p>Đội bóng: <span t-field="o.team_id"/></p>
+            </xpath>
+
+            <xpath expr="//div[hasclass('page')]" position="attributes">
+                <attribute name="style">font-family: 'Times New Roman', Times, serif; font-size: 16px;</attribute>
+            </xpath>
+        </template>
+    </data>
+</odoo>

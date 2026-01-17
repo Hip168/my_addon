@@ -13,7 +13,6 @@ export class ZooDashboard extends Component {
                 species: { count: 0, list: [] },
                 cages: { count: 0, list: [] },
                 animals: { count: 0, list: [] },
-                toys: { count: 0, list: [] },
             },
         });
 
@@ -23,18 +22,16 @@ export class ZooDashboard extends Component {
     }
 
     async loadStats() {
-        const [species, cages, animals, toys] = await Promise.all([
+        const [species, cages, animals] = await Promise.all([
             this.orm.searchRead("animal.species", [], ["name"]),
             this.orm.searchRead("cage", [], ["name"]),
             this.orm.searchRead("animal.base", [], ["name"]),
-            this.orm.searchRead("animal.toy", [], ["name"]),
         ]);
 
         this.state.stats = {
             species: { count: species.length, list: species },
             cages: { count: cages.length, list: cages },
             animals: { count: animals.length, list: animals },
-            toys: { count: toys.length, list: toys },
         };
     }
 

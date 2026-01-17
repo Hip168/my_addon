@@ -1,0 +1,153 @@
+<odoo>
+  <data>
+    <!-- Football Player Views -->
+    <record id="view_football_player_tree" model="ir.ui.view">
+      <field name="name">football.player.tree</field>
+      <field name="model">football.player</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+          <field name="team_id"/>
+          <field name="position"/>
+          <field name="salary"/>
+          <field name="coach_name"/>
+        </list>
+      </field>
+    </record>
+
+    <record id="view_football_player_form" model="ir.ui.view">
+      <field name="name">football.player.form</field>
+      <field name="model">football.player</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="team_id"/>
+              <field name="position"/>
+              <field name="salary"/>
+              <field name="suggested_bonus"/>
+              <field name="coach_name"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Football Team Views -->
+    <record id="view_football_team_form" model="ir.ui.view">
+      <field name="name">football.team.form</field>
+      <field name="model">football.team</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="coach_name"/>
+              <field name="total_salary"/>
+            </group>
+            <notebook>
+              <page string="Danh sách Cầu thủ">
+                <field name="player_ids">
+                  <list editable="bottom">
+                    <field name="name"/>
+                    <field name="position"/>
+                    <field name="salary"/>
+                  </list>
+                </field>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_football_team_tree" model="ir.ui.view">
+      <field name="name">football.team.tree</field>
+      <field name="model">football.team</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+          <field name="coach_name"/>
+          <field name="total_salary"/>
+        </list>
+      </field>
+    </record>
+
+    <!-- Football Match Views -->
+    <record id="view_football_match_form" model="ir.ui.view">
+      <field name="name">football.match.form</field>
+      <field name="model">football.match</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="date"/>
+              <field name="team_home_id"/>
+              <field name="team_away_id"/>
+              <field name="home_team_value"/>
+            </group>
+            <notebook>
+              <page string="Đội hình &amp; Thống kê">
+                <field name="lineup_ids">
+                  <list editable="bottom">
+                    <field name="player_id"/>
+                    <field name="goals"/>
+                    <field name="assists"/>
+                    <field name="minutes_played"/>
+                  </list>
+                </field>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_football_match_tree" model="ir.ui.view">
+      <field name="name">football.match.tree</field>
+      <field name="model">football.match</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+          <field name="date"/>
+          <field name="team_home_id"/>
+          <field name="team_away_id"/>
+        </list>
+      </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_football_player" model="ir.actions.act_window">
+      <field name="name">Cầu thủ</field>
+      <field name="res_model">football.player</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_football_team" model="ir.actions.act_window">
+      <field name="name">Đội bóng</field>
+      <field name="res_model">football.team</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_football_match" model="ir.actions.act_window">
+      <field name="name">Trận đấu</field>
+      <field name="res_model">football.match</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_football_dashboard" model="ir.actions.client">
+        <field name="name">Bảng điều khiển Bóng đá</field>
+        <field name="tag">football_dashboard_client_action</field>
+    </record>
+
+    <!-- Menus -->
+    <!-- Menus -->
+    <menuitem id="menu_football_root" name="Quản lý Bóng đá"/>
+    <menuitem id="menu_football_dashboard" name="Bảng điều khiển" parent="menu_football_root" action="action_football_dashboard" sequence="5"/>
+    <menuitem id="menu_football_team" name="Đội bóng" parent="menu_football_root" action="action_football_team" sequence="10"/>
+    <menuitem id="menu_football_player" name="Cầu thủ" parent="menu_football_root" action="action_football_player" sequence="20"/>
+    <menuitem id="menu_football_match" name="Trận đấu" parent="menu_football_root" action="action_football_match" sequence="30"/>
+  </data>
+</odoo>

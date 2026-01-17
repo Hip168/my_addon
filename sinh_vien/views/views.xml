@@ -1,0 +1,123 @@
+<odoo>
+  <data>
+    <!-- View cho Sinh Viên -->
+    <record id="view_sinh_vien_tree" model="ir.ui.view">
+      <field name="name">sinh_vien.sinh_vien.tree</field>
+      <field name="model">sinh_vien.sinh_vien</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="student_code"/>
+          <field name="name"/>
+          <field name="date_of_birth"/>
+          <field name="gender"/>
+          <field name="email"/>
+        </list>
+      </field>
+    </record>
+
+    <record id="view_sinh_vien_form" model="ir.ui.view">
+      <field name="name">sinh_vien.sinh_vien.form</field>
+      <field name="model">sinh_vien.sinh_vien</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <group>
+                <field name="student_code"/>
+                <field name="name"/>
+                <field name="date_of_birth"/>
+                <field name="age"/>
+              </group>
+              <group>
+                <field name="gender"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="address"/>
+              </group>
+            </group>
+            <notebook>
+              <page string="Lớp học">
+                <field name="student_class_ids">
+                  <list editable="bottom">
+                    <field name="class_id"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="grade"/>
+                    <field name="note"/>
+                    <field name="is_active"/>
+                  </list>
+                </field>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- View cho Lớp Học -->
+    <record id="view_class_tree" model="ir.ui.view">
+      <field name="name">sinh_vien.class.tree</field>
+      <field name="model">sinh_vien.class</field>
+      <field name="arch" type="xml">
+        <list>
+          <field name="name"/>
+        </list>
+      </field>
+    </record>
+
+    <record id="view_class_form" model="ir.ui.view">
+      <field name="name">sinh_vien.class.form</field>
+      <field name="model">sinh_vien.class</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+                <field name="name"/>
+            </group>
+            <notebook>
+              <page string="Sinh viên">
+                <field name="student_ids">
+                  <list editable="bottom">
+                    <field name="student_id"/>
+                    <field name="date_start"/>
+                    <field name="grade"/>
+                    <field name="note"/>
+                    <field name="is_active"/>
+                  </list>
+                </field>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_sinh_vien" model="ir.actions.act_window">
+      <field name="name">Sinh Viên</field>
+      <field name="res_model">sinh_vien.sinh_vien</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_class" model="ir.actions.act_window">
+      <field name="name">Lớp Học</field>
+      <field name="res_model">sinh_vien.class</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Menus -->
+    <menuitem id="menu_sinh_vien_root" name="Quản lý Sinh Viên" sequence="10"/>
+    
+    <menuitem id="menu_sinh_vien" 
+              name="Sinh Viên" 
+              parent="menu_sinh_vien_root" 
+              action="action_sinh_vien" 
+              sequence="1"/>
+
+    <menuitem id="menu_class" 
+              name="Lớp Học" 
+              parent="menu_sinh_vien_root" 
+              action="action_class" 
+              sequence="2"/>
+  </data>
+</odoo>

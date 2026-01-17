@@ -1,6 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_animal_species_sales,animal.species.sales,model_animal_species,group_zoo_sales,1,0,0,0
-access_animal_toy_sales,animal.toy.sales,model_animal_toy,group_zoo_sales,1,1,1,1
+
 access_animal_base_staff,animal.base.staff,model_animal_base,group_zoo_staff,1,1,1,0
 access_animal_species_staff,animal.species.staff,model_animal_species,group_zoo_staff,1,1,1,0
 access_cage_staff,cage.staff,model_cage,group_zoo_staff,1,1,1,0

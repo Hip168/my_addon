@@ -19,6 +19,11 @@
       <field name="arch" type="xml">
         <form string="Thông tin Loài">
           <sheet>
+            <div class="oe_button_box" name="button_box">
+              <button name="action_view_animals" type="object" class="oe_stat_button" icon="fa-paw">
+                <field name="animal_count" widget="statinfo" string="Động vật"/>
+              </button>
+            </div>
             <group>
               <field name="name" />
               <field name="classification" />
@@ -92,6 +97,8 @@
           <field name="cage_id" />
           <field name="birthday" />
           <field name="age" />
+          <field name="weight" />
+          <field name="height" />
           <field name="health_status" />
         </list>
       </field>
@@ -110,7 +117,8 @@
                 <field name="cage_id" />
                 <field name="birthday" />
                 <field name="age" />
-
+                <field name="weight" />
+                <field name="height" />
               </group>
               <group string="Sức khỏe (Extension)">
                 <field name="health_status" />
@@ -171,6 +179,7 @@
       <field name="model">animal.base</field>
       <field name="arch" type="xml">
         <graph string="Thống kê Động vật" type="bar">
+          <field name="name"/>
           <field name="species_id"/>
           <field name="age" type="measure"/>
         </graph>
@@ -184,45 +193,7 @@
     </record>
 
 
-    <record id="view_animal_toy_tree" model="ir.ui.view"> 
-      <field name="name">animal.toy.tree</field>
-      <field name="model">animal.toy</field>
-      <field name="arch" type="xml">
-        <list string="Gấu bông hình thú">
-          <field name="name" />
-          <field name="species_id" />
-          <field name="price" />
-          <field name="material" />
-        </list>
-      </field>
-    </record>
 
-    <record id="view_animal_toy_form" model="ir.ui.view">
-      <field name="name">animal.toy.form</field>
-      <field name="model">animal.toy</field>
-      <field name="arch" type="xml">
-        <form string="Gấu bông hình thú">
-          <sheet>
-            <group>
-              <group string="Thông tin chung">
-                <field name="name" />
-                <field name="species_id" />
-              </group>
-              <group string="Chi tiết sản phẩm">
-                <field name="price" />
-                <field name="material" />
-              </group>
-            </group>
-          </sheet>
-        </form>
-      </field>
-    </record>
-
-    <record id="action_animal_toy" model="ir.actions.act_window">
-      <field name="name">Gấu bông</field>
-      <field name="res_model">animal.toy</field>
-      <field name="view_mode">list,form</field>
-    </record>
 
 
     <record id="view_race_horse_tree" model="ir.ui.view">
@@ -296,11 +267,7 @@
       action="action_animal_base"
       sequence="2" />
 
-    <menuitem id="menu_animal_toy"
-      name="Gấu bông"
-      parent="menu_inherit_root"
-      action="action_animal_toy"
-      sequence="3" />
+
 
     <menuitem id="menu_race_horse"
       name="Ngựa đua"

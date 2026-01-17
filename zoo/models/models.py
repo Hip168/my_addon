@@ -19,6 +19,26 @@ class AnimalSpecies(models.Model):
         string="Phân lớp sinh học",
         default="mammal",
     )
+    animal_ids = fields.One2many(
+        "animal.base", "species_id", string="Danh sách Động vật"
+    )
+    animal_count = fields.Integer(string="Số lượng", compute="_compute_animal_count")
+
+    @api.depends("animal_ids")
+    def _compute_animal_count(self):
+        for record in self:
+            record.animal_count = len(record.animal_ids)
+
+    def action_view_animals(self):
+        self.ensure_one()
+        return {
+            "type": "ir.actions.act_window",
+            "name": "Động vật",
+            "view_mode": "graph,list,form",
+            "res_model": "animal.base",
+            "domain": [("species_id", "=", self.id)],
+            "context": {"default_species_id": self.id},
+        }
 
 
 class Cage(models.Model):
@@ -43,6 +63,8 @@ class AnimalBase(models.Model):
     )
     birthday = fields.Date(string="Ngày sinh")
     age = fields.Integer(string="Tuổi đời", compute="_compute_age", store=True)
+    weight = fields.Float(string="Cân nặng (kg)")
+    height = fields.Float(string="Chiều cao (cm)")
 
     @api.depends("birthday")
     def _compute_age(self):
@@ -63,16 +85,6 @@ class AnimalBaseExtension(models.Model):
         default="good",
     )
     last_checkup_date = fields.Date(string="Ngày khám gần nhất")
-
-
-class AnimalToy(models.Model):
-    _name = "animal.toy"
-    _inherit = "animal.base"
-
-    price = fields.Float(string="Giá bán")
-    material = fields.Char(string="Chất liệu (VD: Vải cotton)")
-
-    # Override food_ids has been removed as we moved food to species level
 
 
 class RaceHorse(models.Model):

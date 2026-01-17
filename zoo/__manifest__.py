@@ -9,6 +9,7 @@
         "security/ir.model.access.csv",
         "views/views.xml",
         "views/dashboard_action.xml",
+        "views/reports.xml",
     ],
     "assets": {
         "web.assets_backend": [

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_football_team,football.team,model_football_team,base.group_user,1,1,1,1
+access_football_player,football.player,model_football_player,base.group_user,1,1,1,1
+access_football_match,football.match,model_football_match,base.group_user,1,1,1,1
+access_football_match_lineup,football.match.lineup,model_football_match_lineup,base.group_user,1,1,1,1
